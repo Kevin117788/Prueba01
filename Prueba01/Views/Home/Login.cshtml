@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="login-container">
+    <div class="login-box">
+        <h2>@ViewBag.Message</h2>
+        
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login-form" }))
+        {
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Ingrese su usuario" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contrasena:</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contrasena" required />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+            </div>
+
+            <div class="form-footer">
+                <a href="#">¿Olvidaste tu contrasena?</a>
+            </div>
+        }
+    </div>
+</div>

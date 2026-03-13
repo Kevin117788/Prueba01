@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Prueba01.Models.Producto>
+@{
+    ViewBag.Title = "ListaCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">Mi Carrito de Compras</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var producto in Model)
+                {
+                    <tr>
+                        <td>@producto.ID</td>
+                        <td>@producto.Nombre</td>
+                        <td>@producto.Categoria</td>
+                        <td>@producto.Descripcion</td>
+                        <td>$@producto.Precio</td>
+                        <td>
+                            <form action="/Carrito/Eliminar" method="post">
+                                <input type="hidden" name="id" value="@producto.ID" />
+                                <button type="submit" class="btn btn-danger btn-eliminar">
+                                    Quitar de la lista
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">El carrito está vacío</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+      <tr>
+          <h3>Total</h3>
+      </tr>
+
+
+    <div style="margin-top:20px;">
+        <a href="/Productos/ListaP" class="btn btn-primary">Volver a Productos</a>
+    </div>
+</main>

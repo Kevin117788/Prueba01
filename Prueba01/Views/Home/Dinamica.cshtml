@@ -1,0 +1,14 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "Dinamica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Dinamica</h1>
+<ul>
+    @foreach (var alumno in Model)
+    {
+        <li>@alumno</li>
+    }
+</ul>
