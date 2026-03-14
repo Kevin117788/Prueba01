@@ -15,6 +15,7 @@ namespace Prueba01.Controllers
         [HttpGet]
         public ActionResult ListaCarrito()
         {
+            ViewBag.Total = listaCarrito.Sum(p => decimal.TryParse(p.Precio, out decimal precio) ? precio : 0);
             return View(listaCarrito);
         }
 
@@ -27,7 +28,7 @@ namespace Prueba01.Controllers
             {
                 listaCarrito.Add(producto);
             }
-            return ViewBag("ListaCarrito");
+            return RedirectToAction("ListaCarrito");
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace Prueba01.Controllers
             {
                 listaCarrito.Remove(producto);
             }
-            return ViewBag("ListaCarrito");
+            return RedirectToAction("ListaCarrito");
         }
     }
 }
