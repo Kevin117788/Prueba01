@@ -1,11 +1,11 @@
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
 
 <div class="login-container">
     <div class="login-box">
         <h2>@ViewBag.Message</h2>
-        
+
         @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login-form" }))
         {
             <div class="form-group">
@@ -19,12 +19,20 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
             </div>
 
             <div class="form-footer">
-                <a href="#">¿Olvidaste tu contrasena?</a>
+                <a href="#">¿Olvidaste tu contrasenña?</a>
             </div>
+
+            <form method="post">
+                <div class="fila">
+                    <div class="Campo">
+                        label
+                    </div>
+                </div>
+            </form>
         }
     </div>
 </div>
