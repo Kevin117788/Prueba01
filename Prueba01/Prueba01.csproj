@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\ProductoDAL.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

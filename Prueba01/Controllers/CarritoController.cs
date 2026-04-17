@@ -22,8 +22,9 @@ namespace Prueba01.Controllers
         [HttpPost]
         public ActionResult Agregar(string id)
         {
-            
-            var producto = ProductosController.listaProductos.FirstOrDefault(p => p.ID == id);
+            var dal = new ProductoDAL();
+            var listaProductos = dal.ObtenerProductos();
+            var producto = listaProductos.FirstOrDefault(p => p.ID == id);
             if (producto != null)
             {
                 listaCarrito.Add(producto);
