@@ -12,7 +12,8 @@ namespace Prueba01.Controllers
         UsuarioDAL dal = new UsuarioDAL();
 
         // GET: Login
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Login()
         {
             return View();
         }
@@ -25,11 +26,42 @@ namespace Prueba01.Controllers
             if (user != null)
             {
                 Session["Usuario"] = user.UsuarioNombre;
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Error = "Usuario o contraseña incorrectos.";
+            ViewBag.Message = "Usuario o contraseña incorrectos.";
             return View();
+        }
+
+        // Registro
+        [HttpGet]
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registro(Usuario user, string RepetirContraseña)
+        {
+            if (user.Contraseña != RepetirContraseña)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden.";
+                return View();
+            }
+
+            // TODO: Agregar lógica correspondiente al DAL para guardar en BD
+            // dal.RegistrarUsuario(user);
+
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            return RedirectToAction("Login","Login");
+
         }
     }
 }

@@ -30,6 +30,12 @@
                     <li>@Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("ListaProductos", "ListaP", "Productos", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Carrito", "ListaCarrito", "Carrito", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Registro", "Registro", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                @if (Session["Usuario"]!=null)
+                {
+                    <li>Hola, @Session["Usuario"]</li>
+                    <li>@Html.ActionLink("cerrar sesion"", "Logout"</li>
+                }
                 </ul>
             </div>
         </div>

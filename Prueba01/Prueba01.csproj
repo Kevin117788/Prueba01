@@ -193,6 +193,7 @@
     <Content Include="Views\Productos\ListaP.cshtml" />
     <Content Include="Views\Carrito\ListaCarrito.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
