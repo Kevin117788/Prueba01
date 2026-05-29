@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "TablaProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TablaProductos</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var producto in Model)
+            {
+                <tr>
+                    <td>@producto.ID</td>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Categoria</td>
+                    <td>@producto.Descripcion</td>
+                    <td>$@producto.Precio</td>
+                    <td>
+                        <form action="/Productos/Eliminar" method="post" style="display:inline-block;">
+                            <input type="hidden" name="id" value="@producto.ID" />
+                            <button type="submit" class="btn-eliminar" onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+                                Eliminar
+                            </button>
+                        </form>
+                        <form action="/Carrito/Agregar" method="post" style="display:inline-block; margin-left: 5px;">
+                            <input type="hidden" name="id" value="@producto.ID" />
+                            <button type="submit" class="btn btn-success">
+                                Agregar al Carrito
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+         }
+    </tbody>
+</table>
+
+

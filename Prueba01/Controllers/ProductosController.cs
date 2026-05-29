@@ -4,33 +4,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Prueba01.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Prueba01.Controllers
 {
     public class ProductosController : Controller
     {
+        private AplicationDbContext db = new AplicationDbContext();
         ProductoDAL dal = new ProductoDAL();
 
         public ActionResult ListaP()
         {
-            ViewBag.Categorias = new List<string> { "Computadoras", "Accesorios", "Pantallas", "Audio", "Almacenamiento", "Componentes" };
-            var productosDb = dal.ObtenerProductos();
+            ViewBag.Categorias = new SelectList(db.Categorias.ToList(), "IdCategoria", "Nombre");
+            var productosDb = db.Productos.Include("Categoria").ToList();
+            return View(productosDb);
+        }
+
+        public ActionResult TablaProductos()
+        {
+            var productosDb = db.Productos.Include("Categoria").ToList();
             return View(productosDb);
         }
 
         [HttpPost]
-        public ActionResult Agregar(string Nombre, string Categoria, string Descripcion, string Precio)
+        public ActionResult Agregar(Producto p)
         {
-            var nuevoProducto = new Producto
+            if (ModelState.IsValid)
             {
-                Nombre = Nombre,
-                Categoria = Categoria,
-                Descripcion = Descripcion,
-                Precio = Precio
-            };
-
-            dal.AgregarProducto(nuevoProducto);
-
+                db.Productos.Add(p);
+                db.SaveChanges();
+            }
             return RedirectToAction("ListaP");
         }
 

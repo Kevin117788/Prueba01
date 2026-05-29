@@ -7,6 +7,7 @@ namespace Prueba01.Models
 {
     public class ProductoDAL
     {
+        
         string Conexion = ConfigurationManager.ConnectionStrings["ConexionDB"].ConnectionString;
 
         public List<Producto> ObtenerProductos()
@@ -29,7 +30,7 @@ namespace Prueba01.Models
                         {
                             ID = dr["Id"].ToString(),
                             Nombre = dr["Nombre"].ToString(),
-                            Categoria = dr["Categoria"].ToString(),
+                           // Categoria = dr[Categoria].ToString(),
                             Descripcion = dr["Descripcion"].ToString(),
                             Precio = Convert.ToDecimal(dr["Precio"]).ToString("0.##")
                         });
@@ -67,7 +68,7 @@ namespace Prueba01.Models
 
         public void AgregarProducto(Producto prod)
         {
-            int idCat = ObtenerOInsertarCategoria(prod.Categoria);
+            int idCat = ObtenerOInsertarCategoria(prod.Categoria.Nombre);
 
             using (SqlConnection con = new SqlConnection(Conexion))
             {
